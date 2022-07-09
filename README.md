@@ -44,6 +44,9 @@ NB: 160000 FakeDTT(FDTT) tokens will be minted for owner. This is for testing pu
 
 - Replace CONTROLLER_WALLET_RPC and DERO_SCID (this is the same as txid for install_sc call) respectively in .env
 
+### Start bridge listener
+`yarn start-listener`
+
 ### Testing FDTT to Dero Transfer
 ...
 
