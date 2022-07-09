@@ -1,16 +1,13 @@
 const axios = require("axios");
 const BigNumber = require("bignumber.js");
-const { io } = require("socket.io-client");
 
 require("dotenv").config({ path: ".env" });
-
-//--- Ethereum Bridge below ----
 
 const processedNonce = {};
 
 const Web3 = require("web3");
 const { EthBridgeAddress, EthBridgeAbi } = require("../constants");
-const web3Eth = new Web3(process.env.PROVIDER__WS_URL);
+const web3Eth = new Web3(process.env.PROVIDER_WS_URL);
 const { address: admin } = web3Eth.eth.accounts.wallet.add(process.env.WALLET_PRIVATE_KEY);
 
 const bridgeEth = new web3Eth.eth.Contract(
@@ -83,7 +80,7 @@ const sendToDERO = async (amount, deroAddress, nonce) => {
 
 		return results;
 	} catch (error) {
-		console.error(error);
+		console.error(error.message);
 		return null;
 	}
 };
@@ -97,5 +94,5 @@ const calculateDeroTokenFromEth = (amountInEth) => {
 };
 
 const sendToEth = async (amount, ethAddress) => {
-    // bridgeEth.methods.
+    // TODO
 };
