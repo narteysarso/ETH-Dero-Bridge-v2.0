@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ETH Dero Bridge</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  
+
+  <!-- BOOTSTRAP-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <!-- ETH Dero Scripts-->
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+ 
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="./vendor/style.css" rel="stylesheet">
+  <link href="./vendor/stylebox.css" rel="stylesheet">
+  <style>
+    html, body, #viewDiv {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;;
+    }
+
+    /*
+        Splash screen animation credits all go to @ihatetomatoes:
+        https://ihatetomatoes.net/create-custom-preloading-screen/
+    */
+
+    #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background-color: darkslategray;
+        opacity: 1.0;
+        transition: opacity 2s ease;
+    }
+    #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #3498db;
+
+        -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+
+    #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #e74c3c;
+
+        -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+
+    #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #f9c922;
+
+        -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+
+    @-webkit-keyframes spin {
+        0%   {
+            -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(0deg);  /* IE 9 */
+            transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+        100% {
+            -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(360deg);  /* IE 9 */
+            transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+    }
+    @keyframes spin {
+        0%   {
+            -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(0deg);  /* IE 9 */
+            transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+        100% {
+            -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(360deg);  /* IE 9 */
+            transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+    }
+  </style>
+   <header id="header">
+    <div class="container-fluid">
+      <div>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">ETH Dero Bridge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./Home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./AboutUs.html">About Us</a>
+                </li>
+              </ul>
+                <button class="enableEthereumButton d-flex btn btn-dark d-grid gap-2 d-md-block">Connect MetaMask</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="logo">
+        <h1><a href="/ETH Dero Bridge/index.html"></a></h1>
+    
+      </div>
+    </div>
+  </header><!-- End #header -->
+
+</head>
+
+<body>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    
+      <div class="container-live">
+        <div class="coin-price">
+          <div class="logo"><img src="./img/kisspng-ethereum-portable-network-graphics-computer-icons-developers-icon-request-icon-ethereum-5cb941c220f890.5510979515556448661351.png">
+            <div class="showBalance">
+              <span class="showBalance"></span>
+              <span class="showAccount"></span>
+            <h4>Connect Meta</h4>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="hero-container">
+    
+      <h1> Welcome <span class="font-28 weight-700 white-color mt-4"></span></h1>
+      
+      <h2>Register for updates!</h2>
+      
+
+      <form action="forms/notify.php" method="post" role="form" class="php-email-form">
+        <div class="row no-gutters">
+          <div class="col-md-6 form-group pr-md-1">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+          </div>
+          <div class="col-md-6 form-group pl-md-1">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+          </div>
+        </div>
+
+        <div class="my-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Your notification request was sent. Thank you!</div>
+        </div>
+        <div class="text-center"><button type="submit">Notify me!</button></div>
+      </form>
+    </div>
+  </section><!-- #hero -->
+
+  <main id="main">
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact Us</h2>
+        </div>
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-3 col-md-5 mb-5 mb-md-0">
+            <div class="info">
+              <div class="address">
+                <i class="bx bx-map"></i>
+                <p>A108 Adam Street<br>New York, NY 535022</p>
+              </div>
+
+              <div class="email">
+                <i class="bx bx-envelope"></i>
+                <p>info@example.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bx bx-phone-call"></i>
+                <p>+1 5589 55488 55s</p>
+              </div>
+            </div>
+
+            <div class="social-links">
+              <a href="https://facebook.com/" class="fa fa-facebook"></a>
+              <a href="https://twitter.com/" class="fa fa-twitter"></a>
+              <a href="https://instagram.com" class="fa fa-instagram"></a>
+              <a href="https://linkedin.com/" class="fa fa-linkedin"></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 col-md-7">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="form-group mt-3">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Us Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Wicked Designs</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+        Designed by <a href="https://bootstrapmade.com/">Wicked Designs</a>
+      </div>
+    </div>
+  </footer><!-- End #footer -->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const ethereumButton = document.querySelector('.enableEthereumButton');
+    const showAccount = document.querySelector('.showAccount');
+    const showBalance = document.querySelector('.showBalance');
+    const showContract = document.querySelector('.showContract');
+    const showFee = document.querySelector('.showFee');
+    const tokenSymbol = document.querySelector('.tokenSymbol');
+    const tokenBalance = document.querySelector('.tokenBalance');
+    const tokenRegistered = document.querySelector('.tokenRegistered');
+    const registerButton = document.querySelector('.registerButton');
+    const wrapButton = document.querySelector('.wrapButton');
+    var provider;
+    var signer;
+    var accounts;
+  
+    ethereumButton.addEventListener('click', () => { getAccount(); });
+    wrapButton.addEventListener('click', () => { wrapToken(); });
+    registerButton.addEventListener('click', () => { registerToken(); });
+  
+    async function getAccount() {
+      provider = new ethers.providers.Web3Provider(window.ethereum)
+      signer = provider.getSigner()
+      accounts = await provider.send("eth_requestAccounts", [])
+      balance = await provider.getBalance(accounts[0])
+  
+      showAccount.innerHTML = await accounts[0]
+      showBalance.innerHTML = ethers.utils.formatEther(balance.toString())
+  
+      const bc = new ethers.Contract(bridgeAddress, bridgeAbi, provider);
+      swapFee = await bc.swapFee();
+      showContract.innerHTML = bridgeAddress
+      showFee.innerHTML = ethers.utils.formatEther(swapFee.toString())
+    }
+  
+    // https://gateway.ipfs.io/ipns/tokens.uniswap.org
+    // TUSDT: 0xD92E713d051C37EbB2561803a3b5FBAbc4962431
+    // TUSDC: 0xA6Cc591f2Fd8784DD789De34Ae7307d223Ca3dDc
+    // DAI:   0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa
+    async function checkContract() {
+      registerButton.disabled = true;
+      wrapButton.disabled = true;
+  
+      if (provider != false) {
+        const ta = document.getElementById("token_contract");
+        const tc = new ethers.Contract(ta.value, tokenAbi, provider);
+        tokenSymbol.innerHTML = await tc.symbol();
+        tokenDecimals = await tc.decimals();
+  
+        const bc = new ethers.Contract(bridgeAddress, bridgeAbi, provider);
+        const tr = await bc.registeredERC20(ta.value);
+        tokenRegistered.innerHTML = tr;
+        if (tr != true) {
+          registerButton.disabled = false;
+        }
+  
+        bal = await tc.balanceOf(accounts[0]);
+        tokenBalance.innerHTML = ethers.utils.formatUnits(bal, tokenDecimals);
+        if (tr == true && bal > 0) {
+          wrapButton.disabled = false;
+        }
+      }
+    }
+  
+    async function wrapToken() {
+      const bc = new ethers.Contract(bridgeAddress, bridgeAbi, signer);
+      const ta = document.getElementById("token_contract");
+      const tr = await bc.registeredERC20(ta.value);
+      const swapFee = await bc.swapFee();
+  
+      if (tr == true) {
+        const tc = new ethers.Contract(ta.value, tokenAbi, provider);
+        tokenDecimals = await tc.decimals();
+        bal = await tc.balanceOf(accounts[0]);
+  
+        const wrapAmount = document.getElementById("wrap_amount");
+        wa = ethers.utils.parseUnits(wrapAmount.value, tokenDecimals);
+  
+        if (bal.gte(wa)) {
+          const tc = new ethers.Contract(ta.value, tokenAbi, signer);
+          const allowance = await tc.allowance(accounts[0], bridgeAddress);
+          if (wa.gt(allowance)) {
+            const txn1 = await (async () => {
+              try {
+                const tx1 = await tc.approve(bridgeAddress, ethers.utils.parseEther("1000000000"));
+                const tx2 = await tx1.wait();
+                return;
+              } catch (error) {
+                alert(error.error.message);
+              }
+            })();
+          }
+  // need to wait for prior tx
+  
+          const deroWallet = document.getElementById("dero_wallet");
+          const options = {value: swapFee}
+          const txn2 = await (async () => {
+            try {
+              return await bc.swapETH2DERO(ta.value, deroWallet.value, wa, options);
+            } catch (error) {
+              alert(error.error.message);
+            }
+          })();
+  
+        }
+      }
+    }
+  
+    async function registerToken() {
+      const bc = new ethers.Contract(bridgeAddress, bridgeAbi, signer);
+      const ta = document.getElementById("token_contract");
+      const txn = await bc.registerSwapPairToDERO(ta.value);
+    }
+      </script>
+
+</body>
+
+</html>
