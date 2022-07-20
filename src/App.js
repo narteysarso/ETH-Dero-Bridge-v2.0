@@ -1,18 +1,27 @@
-   /* eslint-env jquery */
-import React from 'react';
 import './App.css';
-import {BrowserRouter as Router,} from 'react-router-dom'
+import React from "react";
 
+import { Routes, Route} from 'react-router-dom'
+import Home from './components/Home';
+import Contact from './components/ContactUs';
+import About from './components/AboutUs';
 function App() {
-  return (
-    <div className='App'>
-    
-    </div>
-    
-  );
-
   
-}
 
+  return (
+   <div>
+
+        <Routes>
+          <Route path="/" element={ <Home/> } />
+          <Route path="/about" element={ <About/> } />
+          <Route path="/contact" element={ <Contact/> } />
+        </Routes>
+
+     
+      
+</div>
+  
+  );
+}
 
 export default App;
