@@ -81,30 +81,30 @@ export default function CryptoFeeds() {
 
 
   return (
-    <div class="container-live  ">
-    <div class=" coin-price ">
+    <div class="container-live">
+    <div class=" coin-price gradient-border">
       <img className="crypto_logo" src={btc_logo}></img>
       <h5 class="logo" id="bitcoin">$ {btc}</h5>
                  <h5>Btc</h5>
     </div>
-    <div class="coin-price ">
+    <div class="coin-price gradient-border">
       <img className="crypto_logo" src={litecon_logo}></img>
       < h5 class="logo ">$<span id="litecoin">{lite}</span></ h5>
                  < h5>Litecon</ h5>
     </div> 
-    <div class="coin-price ">
+    <div class="coin-price gradient-border">
       <img className="crypto_logo" src={eth_logo}></img>
       < h5 class="logo ">$<span id="ethereum">{eth}</span></ h5>
                  < h5>Eth</ h5>
-    </div> <div class="   coin-price ">
+    </div> <div class="   coin-price gradient-border">
       <img className="crypto_logo" src={tether_logo}></img>
       < h5 class="    logo ">$<span id="tether">{tether}</span></ h5>
                  < h5>Tether</ h5>
-    </div> <div class="   coin-price ">
+    </div> <div class="   coin-price gradient-border">
       <img className="crypto_logo" src={cardano_logo}></img>
       < h5 class="    logo ">$<span id="cardano">{cardano}</span></ h5>
                  < h5>Cardano</ h5>
-    </div> <div class="   coin-price ">
+    </div> <div class="   coin-price gradient-border">
       <img className="crypto_logo" src={solana_logo}></img>
       < h5 class="    logo ">$<span id="solana">{solana}</span></ h5>
                  < h5>Solana</ h5>

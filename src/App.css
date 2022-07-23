@@ -6,6 +6,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    /* background-color: #000000; */
   }
   a {
     text-decoration: none;
@@ -354,12 +355,14 @@ html, body {
   --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 80vh;
+    background-color: #000000;
+    height: 70vh;
     background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyUIG8uV72vKPKIhbrq23sYSkzdOBpXwTejaHuRjJZDBXhsnzxuo9tnZzMb4KuTyApd-c&usqp=CAU") center center;
     background-size: cover;
     /* position: relative; */
     /* margin-top: -80px;
     z-index: 9; */
+    
   }
   #hero .hero-container {
     /* position: absolute; */
@@ -448,7 +451,7 @@ html, body {
     height: 40px;
     margin: 0 8px;
   }
-  #hero .php-email-form button[type=submit] {
+  /* #hero .php-email-form button[type=submit] {
     font-family: "Raleway", sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -465,7 +468,7 @@ html, body {
   }
   #hero .php-email-form button[type=submit]:hover {
     background: gold;
-  }
+  } */
   @media (min-width: 1024px) {
     #hero {
       background-attachment: fixed;
@@ -699,7 +702,7 @@ html, body {
   .php-email-form input:focus, .contact .php-email-form textarea:focus {
     border-color: #fd680e;
   }
-  .php-email-form button[type=submit] {
+  /* .php-email-form button[type=submit] {
     background: #fd680e;
     border: 0;
     padding: 10px 24px;
@@ -709,7 +712,7 @@ html, body {
   }
   .php-email-form button[type=submit]:hover {
     background: #fd8841;
-  }
+  } */
   .social-links {
     text-align: center;
    
@@ -742,7 +745,12 @@ html, body {
   # Footer
   --------------------------------------------------------------*/
   #footer {
+    /* background: linear-gradient(60deg, #f79533,#f79533, #4b3e32,#301a02,#f79533,#f5bd84); */
     background: #2f1708;
+
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMJj_i5DEaLbMYmuNtNFRVi4VztDTNrNtQQ&usqp=CAU");
+    background-size: cover;
+
     padding: 30px 0;
     color: #fff;
     font-size: 14px;
@@ -853,4 +861,123 @@ html, body {
     max-height:25em ;
   }
   
+
+  .container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+
+  }
+
+  .button_wc {
+    padding: .5em;
+    
+    width: 100%;
+    margin: 0 auto;
+    border: #fd8841 2px solid;
+    border-radius: 1em;
+    background-color: #fff;
+    color: #fd8841;
+    cursor: pointer;
+    outline: 0;
+    font-size: 1em;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 150px;
+    z-index: 2;
+    border: 1px solid fd8841(0, 0, 0, 0.04);
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  }
+  
+  .wallet_list {
+    width: 150px;
+    list-style: none;
+    display:flex;
+    flex-direction: column;  
+    
+ 
+  }
+  .wallet {
+    width: 100%;
+    margin-top: .5em;
+    border: #fd8841 2px solid !important;
+    border-radius: 1em;
+    padding: .5em 7em;
+    
+  }
+  
+  .wallet:hover {
+    background-color: white;
+    opacity: 0.7;
+    cursor: pointer;
+  } 
+
+  .type_font{
+    font-size:large;
+    text-align: center;
+  }
+
+  .neon_btn {
+    padding: .15em .5em;
+    width: 100%;
+    margin: 0 auto;
+      border-width: 1px;
+    border-style: solid;
+    border-color: #fd8841 #ffff00 #ffff00 #fd8841;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: transparent;
+    background-image: linear-gradient(to bottom right, #fd8841, #ffd000);
+    background-clip: text;
+    box-shadow: -2px -2px 0.5rem #fd8841,
+        2px 2px 0.5rem inset #fd8841,
+        2px 2px 0.5rem #d7731686,
+        -2px -2px 0.5rem inset #ecec1286;
+}
+
+.neon_btn:hover {
+    color: #101010;
+    background-clip: border-box;
+    box-shadow: -0.5rem -0.25rem 1.5rem #fd8841,
+        0.5rem 0.25rem 1.5rem #f6c7508f;
+}
+
+
+.gradient-border {
+  position: relative;
+  border-radius: .25em;
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * .25em);
+  left: calc(-1 * .25em);
+  height: calc(100% + .25em * 2);
+  width: calc(100% + .25em * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #f29e31, #f4f25f, #ed946a, #d86837, #a35705, #d8ac0d);
+  border-radius: calc(2 * .25em);
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
   

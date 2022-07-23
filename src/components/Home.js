@@ -2,7 +2,6 @@ import '../App.css';
 import React from "react";
 import Header from './Header';
 
-import { Link } from "react-router-dom";
 import Footer from './Footer';
 import Hero from './Hero';
 import Crypto from './CryptoFeeds';
@@ -13,8 +12,7 @@ export default function Home() {
     <div>
      <Header/>
      <Hero/>
-     <Crypto/>
-     <Bridge/>
+     {/* <Crypto/> */}
      <Footer/>
     </div>
   );}

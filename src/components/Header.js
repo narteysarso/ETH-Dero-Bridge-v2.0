@@ -1,7 +1,13 @@
 import '../App.css';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+
+
 export default function Header() {
+
+  
+  
   return (   
         <nav className='border' class="navbar navbar-expand-lg bg-light mt-0">
           <div className='container-fluid ' >
@@ -19,7 +25,18 @@ export default function Header() {
                 <Link to="/contact">Contact</Link>
                 </li>
               </ul>
-                <button className="enableEthereumButton d-flex btn btn-dark d-grid gap-2 d-md-block">Connect MetaMask</button>
+
+              
+{/* 
+              {!address ? (
+             <button className="enableEthereumButton d-flex btn btn-dark d-grid gap-2 d-md-block">Connect MetaMask</button>
+
+
+          ) : (
+            <button  className="enableEthereumButton d-flex btn btn-dark d-grid gap-2 d-md-block">Disconnect Wallet</button>
+
+
+          )} */}
             </div>
           </div>
            

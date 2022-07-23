@@ -26,7 +26,7 @@ export default function Subscribe() {
           <div class="error-message"></div>
           <div class="sent-message">Your notification request was sent. Thank you!</div>
         </div>
-        <div class="text-center"><button type="submit">Notify me!</button></div>
+        <div class="text-center"><button className="neon_btn" type="submit">Notify me!</button></div>
       </form>
 </div>
 

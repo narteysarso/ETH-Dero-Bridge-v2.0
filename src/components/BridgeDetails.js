@@ -1,6 +1,6 @@
 import '../App.css';
 
-export default function BridgeForm() {
+export default function BridgeForm({account}) {
   return (
 <div class="container-bridge">
    <div class="section-title">
@@ -10,16 +10,16 @@ export default function BridgeForm() {
 <ul class="faq-list">
 <li>
     <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1">Ethereum Account Address<i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-    <div className='bridge_box collapse' id="faq1"  data-bs-parent=".faq-list">
+    <div className='bridge_box gradient-border collapse' id="faq1"  data-bs-parent=".faq-list">
       <p >
-        ETH Address: <span class="showAccount">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</span>
+        ETH Address: <span class="showAccount">{account}</span>
       </p>
     </div>
   </li>
 
   <li>
     <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">Bridge Contract Address <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-    <div  className='bridge_box collapse'id="faq3"  data-bs-parent=".faq-list">
+    <div  className='bridge_box gradient-border collapse'id="faq3"  data-bs-parent=".faq-list">
       <p>
         Bridge Contract Address <span class="showContract">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</span>
       </p>
@@ -30,7 +30,7 @@ export default function BridgeForm() {
   </li>
   <li>
   <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed">Token Details<i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
-  <div className='bridge_box collapse' id="faq4" data-bs-parent=".faq-list">
+  <div className='bridge_box gradient-border collapse' id="faq4" data-bs-parent=".faq-list">
   <p>
   ERC20 Contract: <input type="text" id="token_contract" size="50" onFocus="checkContract()" onBlur="checkContract()"></input><br></br><p></p>
   Token Symbol: <span class="tokenSymbol">DDT</span> <br></br> 
