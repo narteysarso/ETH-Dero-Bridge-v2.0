@@ -1,10 +1,11 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "hardhat/console.sol";
 
 contract EthBridge is Ownable {
     using Counters for Counters.Counter;
@@ -23,8 +24,11 @@ contract EthBridge is Ownable {
     //track handled deposites
     mapping(address => mapping(uint => bool)) public processedNonces;
     
-    //track all deposite of a person
-    mapping (address => uint) private _lockedStacks;
+    //maps Eth address to Dero address
+    mapping (address => string) private addressMapping;
+
+    // map dero address to eth
+    mapping (string => address) private ethAddressOf;
 
     //track all withdrawal request
     mapping (uint => mapping(address => uint)) private _withdrawalRequests;
@@ -42,17 +46,32 @@ contract EthBridge is Ownable {
 
         processedNonces[msg.sender][_nonceCounter.current()] = true;
 
+        addressMapping[msg.sender] =  deroAddress;
+
+        ethAddressOf[deroAddress] = msg.sender;
+
         token.transferFrom(msg.sender, address(this), amount);
 
         emit Deposit(msg.sender, amount, _nonceCounter.current(), deroAddress);
     }
 
-    function withdraw (uint amount, address receipient, string calldata deroAddress) external onlyOwner {
-        require(receipient != address(0), "Invalid issuer address");
-        require(amount > 0, "Amount not enough");
+    function withdraw (uint amount, string memory deroAddress) external onlyOwner {
 
-        token.transfer(receipient, amount);
+        token.transfer(ethAddressOf[deroAddress], amount);
 
-        emit WithdrawalProcessed(receipient,  amount, deroAddress);
+        emit WithdrawalProcessed(ethAddressOf[deroAddress],  amount, deroAddress);
+    }
+
+    function changeAddressMap(string memory deroAddress) external {
+        addressMapping[msg.sender] = deroAddress;
+        ethAddressOf[deroAddress]= msg.sender;
+    }
+
+    function getDeroAddressOf(address _address) external view onlyOwner returns (string memory){
+        return addressMapping[_address];
+    }
+
+    function getEthAddressOf(string memory deroAddress) external view returns (address){
+        return ethAddressOf[deroAddress];
     }
 }
