@@ -20,4 +20,8 @@ contract FakeDTTToken is ERC20, Ownable {
 
         _mint(_to, _amount);
     }
+
+    function decimals() public view virtual override returns (uint8){
+        return 0;
+    }
 }
