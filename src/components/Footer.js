@@ -23,9 +23,9 @@ export default function Footer() {
 
         <div className="info">
              
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p></p>
                 <p>info@example.com</p>          
-                <p>+1 5589 55488 55s</p>
+                <p></p>
               
             </div>
       </div>

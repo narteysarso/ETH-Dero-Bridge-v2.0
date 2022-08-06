@@ -1,4 +1,7 @@
 import '../App.css';
+import React from "react"; 
+import { Container, Row, Col } from "react-bootstrap";
+import { contactConfig } from "./content_option"
 import Footer from './Footer';
 import Header from './Header';
 import Subscribe from './Subscription'
@@ -14,36 +17,62 @@ export default function Contact() {
           <div class="section-title">
             <h2>Contact Us</h2>
           </div>
-  
-          <div class="row justify-content-center">
-  
-           
-  
-            <div class="col-lg-5 col-md-7">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required></input>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required></input>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required></input>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-              </form>
-            </div>
-  
-          </div>
-  
+     <Row className="sec_sp">
+       <Col lg="5" className="mb-5">
+         <h3 className="color_sec py-4">Get in touch</h3>
+         <address>
+           <strong>Email:</strong>{" "}
+           <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
+             {contactConfig.YOUR_EMAIL}
+           </a>
+           <br />
+           <br />
+         </address>
+         <p>{contactConfig.description}</p>
+       </Col>
+       <Col lg="7" className="d-flex align-items-center">
+         <form  className="contact__form w-100">
+           <Row>
+             <Col lg="6" className="form-group">
+               <input
+                 className="form-control"
+                 id="name"
+                 name="name"
+                 placeholder="Name" 
+                 type="text"
+                 required 
+               />
+             </Col>
+             <Col lg="6" className="form-group">
+               <input
+                 className="form-control rounded-0"
+                 id="email"
+                 name="email"
+                 placeholder="Email"
+                 type="email" 
+                 required 
+               />
+             </Col>
+           </Row>
+           <textarea
+             className="form-control rounded-0"
+             id="message"
+             name="message"
+             placeholder="Message"
+             rows="5" 
+             required
+           ></textarea>
+           <br />
+           <Row>
+             <Col lg="12" className="form-group">
+               <button className="btn ac_btn" type="submit"> 
+               Send
+               </button>
+             </Col>
+           </Row>
+         </form>
+       </Col>
+     </Row>
         </div>
       </section>
       <Subscribe/>

@@ -771,10 +771,11 @@ html, body {
   .container-mission{
     margin-top: 3em;
   }
-  .mission-statement{
+  .mission-statement p{
     max-width: 80%;
     margin: auto;
     padding: 1em;
+    color: #000000;
     /* text-align: cssenter; */
   }
   .profiles{
