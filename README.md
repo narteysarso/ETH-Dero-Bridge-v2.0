@@ -54,5 +54,5 @@ NB: 160000 FakeDTT(FDTT) tokens will be minted for owner. This is for testing pu
 
 ### if you contribute to this project or for further details pedr02b211@gmail.com
 
-all donations welcome 0xF41A27673DF4F546993Eb6cF11Dd11F176086610(metamask ethereum)
+all donations welcome 0x8F2E97986A7f43ADe326d4bcf30b9EDFDDB07922(metamask ethereum)
 
