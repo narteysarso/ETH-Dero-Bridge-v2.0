@@ -65,7 +65,7 @@ export default function Contact() {
            <br />
            <Row>
              <Col lg="12" className="form-group">
-               <button className="btn ac_btn" type="submit"> 
+               <button  className="neon_btn" type="submit"> 
                Send
                </button>
              </Col>
@@ -75,7 +75,7 @@ export default function Contact() {
      </Row>
         </div>
       </section>
-      <Subscribe/>
+      {/* <Subscribe/> */}
       <Crypto/>
       <Footer/>
       </div>
