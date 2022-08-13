@@ -891,13 +891,11 @@ html, body {
   }
   
   .wallet_list {
-    width: 150px;
     list-style: none;
     display:flex;
     flex-direction: column;  
-    
- 
   }
+
   .wallet {
     width: 100%;
     margin-top: .5em;
@@ -977,4 +975,7 @@ html, body {
 		background-position: 0% 50%;
 	}
 }
-  
+.wallet_image{
+  width: 20px;
+  margin-right: 1em;
+}  

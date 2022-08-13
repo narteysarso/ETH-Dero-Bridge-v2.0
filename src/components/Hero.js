@@ -7,7 +7,11 @@ import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import React, { useEffect, useState } from 'react'
 import BridgeForm from './BridgeDetails'
 import CryptoFeeds from './CryptoFeeds'
-require('dotenv').config();
+import meta from '../img/metamask.png'
+import coinbase from '../img/coinbase.png'
+import wc from '../img/wc.png'
+
+require('dotenv').config()
 
 const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 4, 5, 42, 56, 80001, 137],
@@ -135,10 +139,8 @@ export default function Hero() {
     <div>
       <section id="hero">
         <div className="hero_title">
-          
           <img className="hero_logo" src={logo}></img>
           <div className="hero_text">
-            
             <p className="orange_neon">CryptoEscondido</p>
             <h2
               class=" orange_neon typewrite type_font"
@@ -163,27 +165,27 @@ export default function Hero() {
                 >
                   Connect Wallet
                 </button>
-                
               )}
 
               {!account && open && (
-                <div class="dropdown ">
-                  <ul className="wallet_list ">
-                    <button
-                      className="wallet "
-                      onClick={() => {
-                        activate(CoinbaseWallet)
-                      }}
-                    >
-                      Coinbase Wallet
-                    </button>
-                    <button className="wallet" onClick={connectInjected}>
-                      Metamask
-                    </button>
-                    <button className="wallet" onClick={connectWalletConnect}>
-                      Wallet Connect
-                    </button>
-                  </ul>
+                <div className='wallet_list'>
+                  <button
+                    className="wallet "
+                    onClick={() => {
+                      activate(CoinbaseWallet)
+                    }}
+                  >
+                    <img className="wallet_image" src={coinbase}></img>
+                    Coinbase Wallet
+                  </button>
+                  <button className="wallet" onClick={connectInjected}>
+                    <img className="wallet_image" src={meta}></img>
+                    Metamask
+                  </button>
+                  <button className="wallet" onClick={connectWalletConnect}>
+                    <img className="wallet_image" src={wc}></img>
+                    Wallet Connect
+                  </button>
                 </div>
               )}
             </div>
