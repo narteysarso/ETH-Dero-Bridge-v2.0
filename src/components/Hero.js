@@ -10,6 +10,11 @@ import CryptoFeeds from './CryptoFeeds'
 import meta from '../img/metamask.png'
 import coinbase from '../img/coinbase.png'
 import wc from '../img/wc.png'
+import Header from './Header'
+
+import { networks } from '../networks';
+
+
 
 require('dotenv').config()
 
@@ -35,8 +40,10 @@ const walletconnect = new WalletConnectConnector({
 })
 export default function Hero() {
   const [open, setOpen] = useState(false)
+	const [network, setNetwork] = useState('');
 
   const {
+    chainId,
     active,
     account,
     library,
@@ -45,9 +52,12 @@ export default function Hero() {
     deactivate,
   } = useWeb3React()
 
+  // 
+
   const connectInjected = async () => {
     try {
       await activate(injected)
+      setNetwork(networks[chainId]);
     } catch (ex) {
       console.log(ex)
     }
@@ -56,6 +66,7 @@ export default function Hero() {
   const connectWalletConnect = async () => {
     try {
       await activate(walletconnect)
+      setNetwork(networks[chainId]);
     } catch (ex) {
       console.log(ex)
     }
@@ -119,6 +130,7 @@ export default function Hero() {
   }
 
   window.onload = function () {
+   
     var elements = document.getElementsByClassName('typewrite')
     for (var i = 0; i < elements.length; i++) {
       var toRotate = elements[i].getAttribute('data-type')
@@ -135,8 +147,15 @@ export default function Hero() {
     document.body.appendChild(css)
   }
 
+
   return (
+    
     <div>
+      <Header
+      account ={account}
+      network = {network}
+     
+      />
       <section id="hero">
         <div className="hero_title">
           <img className="hero_logo" src={logo}></img>

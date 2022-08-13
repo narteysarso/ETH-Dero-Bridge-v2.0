@@ -39,7 +39,6 @@ export default function CryptoFeeds() {
   //   setCryptos(crypto)
   //   console.log(cryptos)
     for (const key in data) {
-      console.log(`${key}: ${data[key]}`);
       if(key == "bitcoin"){
         let btc = Object.values(data[key])[0];
         setBtc(btc)

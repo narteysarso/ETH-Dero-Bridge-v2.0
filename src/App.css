@@ -986,4 +986,9 @@ html, body {
 .wallet_image{
   width: 20px;
   margin-right: 1em;
-}  
+}
+
+.network_logo{
+  height: 1.5em;
+  margin-right: .7em;
+}
