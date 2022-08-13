@@ -84,7 +84,7 @@ export default function CryptoFeeds() {
     <div class="container-live">
     <div class=" coin-price gradient-border">
       <img className="crypto_logo" src={btc_logo}></img>
-      <h5 class="logo" id="bitcoin">$ {btc}</h5>
+      <h5 class="logo" id="bitcoin">${btc}</h5>
                  <h5>Btc</h5>
     </div>
     <div class="coin-price gradient-border">

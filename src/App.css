@@ -786,18 +786,26 @@ html, body {
   }
   .profile-img{
     max-width: 60%;
+    height: 150px;
     margin: auto;
     margin-top: 1em;
-  
+    border: #d86837 1px dotted;
+    border-radius: 12em;
+  }
+  .profile-img:hover{
+    box-shadow: 0px 0px 15px .2px #fd7827;
   }
   .profile{
     max-width: 30%;
+    height: 520px;
     display: flex;
     flex-direction: column;
     border:#fd680e 2px solid;
     background-color: #fbf6f3;
     text-align: center;
     border-radius: 2em;
+    padding: 1em 2em;
+    padding-bottom: 1em;
   }
   
   /*--------------------------------------------------------------
