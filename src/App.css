@@ -747,10 +747,6 @@ html, body {
   #footer {
     /* background: linear-gradient(60deg, #f79533,#f79533, #4b3e32,#301a02,#f79533,#f5bd84); */
     background: #2f1708;
-
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMJj_i5DEaLbMYmuNtNFRVi4VztDTNrNtQQ&usqp=CAU");
-    background-size: cover;
-
     padding: 30px 0;
     color: #fff;
     font-size: 14px;
