@@ -7,21 +7,22 @@ import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import React, { useEffect, useState } from 'react'
 import BridgeForm from './BridgeDetails'
 import CryptoFeeds from './CryptoFeeds'
+require('dotenv').config();
 
 const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 4, 5, 42, 56, 80001, 137],
 })
 const CoinbaseWallet = new WalletLinkConnector({
-  url: `https://mainnet.infura.io/v3/c8fec96713c54f698db3709db29eb64a`,
+  url: `https://mainnet.infura.io/v3/${process.env.INFURA_PRIVATE_KEY}`,
   appName: 'Eth-Dero Bridge',
   supportedChainIds: [1, 3, 4, 5, 42, 56, 80001, 137],
 })
 const walletconnect = new WalletConnectConnector({
   rpc: {
-    1: 'https://mainnet.infura.io/v3/c8fec96713c54f698db3709db29eb64a',
-    4: 'https://rinkeby.infura.io/v3/a0b5fbd9fb474d6aaa171adfd86d7e31',
-    80001: 'https://polygon-mumbai.infura.io/v3/c8fec96713c54f698db3709db29eb64a',
-    137: 'https://polygon-mainnet.infura.io/v3/c8fec96713c54f698db3709db29eb64a',
+    1: 'https://mainnet.infura.io/v3/${process.env.INFURA_PRIVATE_KEY}',
+    4: 'https://rinkeby.infura.io/v3/${process.env.INFURA_PRIVATE_KEY}',
+    80001: 'https://polygon-mumbai.infura.io/v3/${process.env.INFURA_PRIVATE_KEY}',
+    137: 'https://polygon-mainnet.infura.io/v3/${process.env.INFURA_PRIVATE_KEY}',
     56: 'https://bsc-dataseed.binance.org/',
   },
   network: 'binance',
@@ -134,8 +135,10 @@ export default function Hero() {
     <div>
       <section id="hero">
         <div className="hero_title">
+          
           <img className="hero_logo" src={logo}></img>
           <div className="hero_text">
+            
             <p className="orange_neon">CryptoEscondido</p>
             <h2
               class=" orange_neon typewrite type_font"
@@ -145,7 +148,7 @@ export default function Hero() {
               <span class="wrap"></span>
             </h2>
             {/* <div>Active: {active ? "true" : "false"}</div>
-      <div>Account: {account ? account : null}</div> */}
+            <div>Account: {account ? account : null}</div> */}
 
             <div className="container">
               {account ? (
@@ -160,6 +163,7 @@ export default function Hero() {
                 >
                   Connect Wallet
                 </button>
+                
               )}
 
               {!account && open && (
