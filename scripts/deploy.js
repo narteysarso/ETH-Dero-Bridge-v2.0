@@ -4,47 +4,54 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require('hardhat')
 
 async function main() {
+  const fdtt = await hre.ethers.getContractFactory('FakeDTTToken')
+  const deployedfdtt = await fdtt.deploy()
+  await deployedfdtt.deployed()
 
-  const fdtt =  await hre.ethers.getContractFactory("FakeDTTToken");
-  const deployedfdtt = await fdtt.deploy();
-  await deployedfdtt.deployed();
-  
-  const EthBridge = await hre.ethers.getContractFactory("EthBridge");
-  const deployedEthBridge = await EthBridge.deploy(deployedfdtt.address);
+  const EthBridge = await hre.ethers.getContractFactory('EthBridge')
+  const deployedEthBridge = await EthBridge.deploy(deployedfdtt.address)
 
-  await deployedEthBridge.deployed();
+  await deployedEthBridge.deployed()
 
-  storeContractData(deployedEthBridge, "EthBridge");
-  storeContractData(deployedfdtt, "FakeDTTToken");
+  storeContractData(deployedEthBridge, 'EthBridge')
+  storeContractData(deployedfdtt, 'FakeDTTToken')
 
-  console.log("FakeDTTToken deployed to:", deployedfdtt.address);
-  console.log("EthBridge deployed to:", deployedEthBridge.address);
+  console.log('FakeDTTToken deployed to:', deployedfdtt.address)
+  console.log('EthBridge deployed to:', deployedEthBridge.address)
 }
 
 
+//Storing Deployed contracts in contractAddress.js
+let contractAddress = `
+  export const bridgeAddress = ${deployedEthBridge.address}
+  export const fakeDttAddress = ${deployedfdtt.address}`
+
+let data = JSON.stringify(contractAddress)
+fs.writeFileSync('contractAddress.js', JSON.parse(data))
+
+
 const storeContractData = (contract, contractName) => {
-  const fs = require("fs");
-  const contractDir = `${__dirname}/../abis`;
+  const fs = require('fs')
+  const contractDir = `${__dirname}/../abis`
 
   if (!fs.existsSync(contractDir)) {
-    fs.mkdirSync(contractDir);
+    fs.mkdirSync(contractDir)
   }
 
-  const contractArtiacts = artifacts.readArtifactSync(contractName);
+  const contractArtiacts = artifacts.readArtifactSync(contractName)
 
   fs.writeFileSync(
     contractDir + `/${contractName}.json`,
-    JSON.stringify({ address: contract.address, ...contractArtiacts }, null, 2)
-  );
-};
+    JSON.stringify({ address: contract.address, ...contractArtiacts }, null, 2),
+  )
+}
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-main()
-.catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main().catch((error) => {
+  console.error(error)
+  process.exitCode = 1
+})
