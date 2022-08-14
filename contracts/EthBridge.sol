@@ -19,7 +19,7 @@ contract EthBridge is Ownable {
     //nonce counter 
     Counters.Counter private _nonceCounter;
 
-    uint public feeRate = 1000;
+    uint public fee = 0;
 
     //track handled deposites
     mapping(address => mapping(uint => bool)) public processedNonces;
@@ -30,18 +30,19 @@ contract EthBridge is Ownable {
     // map dero address to eth
     mapping (string => address) private ethAddressOf;
 
-    //track all withdrawal request
-    mapping (uint => mapping(address => uint)) private _withdrawalRequests;
-
     //handles deposites
-    function lockTokens(address _tokenAddress, uint _amount, string memory deroAddress) external payable {
+    function lockTokens(address _tokenAddress, uint _amount, string memory deroAddress) external payable returns (uint){
         ERC20 token = ERC20(_tokenAddress);
 
         require(msg.sender != address(0), "Invalid address");
 
         require(_amount > 0, "Amount not enough");
-
+        
         require(token.allowance(msg.sender, address(this)) >= _amount, "Approve tokens first");
+
+        if(!isValidTokenAddress(_tokenAddress)){
+            revert("Invalid token address");
+        }
 
         _nonceCounter.increment();
 
@@ -53,9 +54,13 @@ contract EthBridge is Ownable {
 
         token.transferFrom(msg.sender, address(this), _amount);
 
-        uint nomalizedAmount = normalizeAmount(token.decimals(), _amount);
+        uint amountAfterFee = _amount - getFee(_amount);
+
+        uint nomalizedAmount = normalizeAmount(token.decimals(), amountAfterFee);
 
         emit Deposit(msg.sender, nomalizedAmount, _nonceCounter.current(), deroAddress);
+
+        return amountAfterFee;
     }
 
     function normalizeAmount(uint8 _tokenDecimals, uint _amount) internal pure returns (uint) {
@@ -68,20 +73,25 @@ contract EthBridge is Ownable {
 
     function denomalizeAmount(uint8 _tokenDecimals, uint _amount) internal pure returns (uint){
         if(_tokenDecimals > 8){
-            return _amount * 10 ** (_tokenDecimals + 8);
+            return _amount * 10 ** 8;
         }
 
         return _amount;
     }
 
-    function releaseTokens(address _tokenAddress, uint _amount, string memory deroAddress) external onlyOwner {
+    function releaseTokens(address _tokenAddress, uint _amount, string memory deroAddress) external onlyOwner returns (uint) {
         ERC20 token = ERC20(_tokenAddress);
+        if(!isValidTokenAddress(_tokenAddress)){
+            revert();
+        }
 
         uint amount = denomalizeAmount(token.decimals(), _amount);
 
         token.transfer(ethAddressOf[deroAddress], amount);
 
         emit WithdrawalProcessed(ethAddressOf[deroAddress],  amount, deroAddress);
+
+        return amount;
     }
 
     function changeAddressMap(string memory deroAddress) external {
@@ -99,6 +109,17 @@ contract EthBridge is Ownable {
     }
 
     function setFee(uint _feeRate) external onlyOwner{
-        feeRate = _feeRate;
+        fee = _feeRate;
+    }
+
+    function isValidTokenAddress(address _address) internal pure returns (bool){
+
+        //Check acceptable contract address
+
+        return true;
+    }
+
+    function getFee(uint _amount) public view returns (uint){
+        return (_amount * fee )/ 1000;
     }
 }

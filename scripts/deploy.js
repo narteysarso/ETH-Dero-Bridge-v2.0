@@ -13,7 +13,7 @@ async function main() {
   await deployedfdtt.deployed();
   
   const EthBridge = await hre.ethers.getContractFactory("EthBridge");
-  const deployedEthBridge = await EthBridge.deploy(deployedfdtt.address);
+  const deployedEthBridge = await EthBridge.deploy();
 
   await deployedEthBridge.deployed();
 
