@@ -39,7 +39,6 @@ export default function CryptoFeeds() {
   //   setCryptos(crypto)
   //   console.log(cryptos)
     for (const key in data) {
-      console.log(`${key}: ${data[key]}`);
       if(key == "bitcoin"){
         let btc = Object.values(data[key])[0];
         setBtc(btc)
@@ -84,7 +83,7 @@ export default function CryptoFeeds() {
     <div class="container-live">
     <div class=" coin-price gradient-border">
       <img className="crypto_logo" src={btc_logo}></img>
-      <h5 class="logo" id="bitcoin">$ {btc}</h5>
+      <h5 class="logo" id="bitcoin">${btc}</h5>
                  <h5>Btc</h5>
     </div>
     <div class="coin-price gradient-border">

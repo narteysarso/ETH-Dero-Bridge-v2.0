@@ -25,6 +25,7 @@ Follow these instructions to setup dero-bridge
     - WALLET_PRIVATE_KEY: network wallet private key
     - CONTROLLER_WALLET_RPC: dero wallet rpc endpoint. This may change per deployment
     - DERO_SCID: dero smart contract ID. This may change per deployment
+    - INFURA_PRIVATE_KEY : Infura key to broadcast transaction
 
 - add netwok configuration to hardhat.config.js. Rinkeby network provided by default
 

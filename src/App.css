@@ -747,10 +747,6 @@ html, body {
   #footer {
     /* background: linear-gradient(60deg, #f79533,#f79533, #4b3e32,#301a02,#f79533,#f5bd84); */
     background: #2f1708;
-
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMJj_i5DEaLbMYmuNtNFRVi4VztDTNrNtQQ&usqp=CAU");
-    background-size: cover;
-
     padding: 30px 0;
     color: #fff;
     font-size: 14px;
@@ -790,18 +786,26 @@ html, body {
   }
   .profile-img{
     max-width: 60%;
+    height: 150px;
     margin: auto;
     margin-top: 1em;
-  
+    border: #d86837 1px dotted;
+    border-radius: 12em;
+  }
+  .profile-img:hover{
+    box-shadow: 0px 0px 15px .2px #fd7827;
   }
   .profile{
     max-width: 30%;
+    height: 520px;
     display: flex;
     flex-direction: column;
     border:#fd680e 2px solid;
     background-color: #fbf6f3;
     text-align: center;
     border-radius: 2em;
+    padding: 1em 2em;
+    padding-bottom: 1em;
   }
   
   /*--------------------------------------------------------------
@@ -895,13 +899,11 @@ html, body {
   }
   
   .wallet_list {
-    width: 150px;
     list-style: none;
     display:flex;
     flex-direction: column;  
-    
- 
   }
+
   .wallet {
     width: 100%;
     margin-top: .5em;
@@ -981,4 +983,12 @@ html, body {
 		background-position: 0% 50%;
 	}
 }
-  
+.wallet_image{
+  width: 20px;
+  margin-right: 1em;
+}
+
+.network_logo{
+  height: 1.5em;
+  margin-right: .7em;
+}
