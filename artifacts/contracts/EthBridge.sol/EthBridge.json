@@ -1,5 +1,4 @@
 {
-  "address": "0x792fF0FcB9097B243D52d75beF5784d5E8CE36D1",
   "_format": "hh-sol-artifact-1",
   "contractName": "EthBridge",
   "sourceName": "contracts/EthBridge.sol",

@@ -1,5 +1,4 @@
 {
-  "address": "0x292B3942A1D035606f125334FB7C4FD2b3c7b755",
   "_format": "hh-sol-artifact-1",
   "contractName": "FakeDTTToken",
   "sourceName": "contracts/FakeDTTToken.sol",

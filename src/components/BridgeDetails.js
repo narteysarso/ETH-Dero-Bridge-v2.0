@@ -1,5 +1,5 @@
 import '../App.css';
-
+const {abi : EthBridgeAbi, address: EthBridgeAddress} = require("../abis/EthBridge.json");
 export default function BridgeForm({account}) {
   return (
 <div class="container-bridge">
@@ -21,10 +21,10 @@ export default function BridgeForm({account}) {
     <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">Bridge Contract Address <i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
     <div  className='bridge_box gradient-border collapse'id="faq3"  data-bs-parent=".faq-list">
       <p>
-        Bridge Contract Address <span class="showContract">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</span>
+        Bridge Contract Address <span class="showContract">{EthBridgeAddress}</span>
       </p>
       <p>
-        Bridge Fee <span class="showFee">12</span>
+        Bridge Fee : <span class="showFee">TBD</span>
       </p>
     </div>
   </li>

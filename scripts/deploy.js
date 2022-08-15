@@ -23,28 +23,25 @@ async function main() {
   console.log('EthBridge deployed to:', deployedEthBridge.address)
 }
 
-
-//Storing Deployed contracts in contractAddress.js
-let contractAddress = `
-  export const bridgeAddress = ${deployedEthBridge.address}
-  export const fakeDttAddress = ${deployedfdtt.address}`
-
-let data = JSON.stringify(contractAddress)
-fs.writeFileSync('contractAddress.js', JSON.parse(data))
-
-
 const storeContractData = (contract, contractName) => {
   const fs = require('fs')
   const contractDir = `${__dirname}/../abis`
+  const contractDirInSrc = `${__dirname}/../src/abis`
 
-  if (!fs.existsSync(contractDir)) {
+  if (!fs.existsSync(contractDir) && !fs.existsSync(contractDirInSrc)) {
     fs.mkdirSync(contractDir)
+    fs.mkdirSync(contractDirInSrc)
   }
 
   const contractArtiacts = artifacts.readArtifactSync(contractName)
 
   fs.writeFileSync(
     contractDir + `/${contractName}.json`,
+    JSON.stringify({ address: contract.address, ...contractArtiacts }, null, 2),
+  )
+
+  fs.writeFileSync(
+    contractDirInSrc + `/${contractName}.json`,
     JSON.stringify({ address: contract.address, ...contractArtiacts }, null, 2),
   )
 }
