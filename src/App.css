@@ -557,13 +557,13 @@ html, body {
   .bridge_tx{
     align-items: center;
     max-width: 90%;
-    margin: auto;
+    margin:  auto;
   }
   .bridge_box{
     border: #fd7827 2px solid;
     background-color: #fff7f2 ;
     max-width: 100%;
-    margin: auto;
+    margin: 1em auto;
     border-radius: 2em;
     padding: 1em;
     padding-top: 0;
@@ -984,7 +984,7 @@ html, body {
 	}
 }
 .wallet_image{
-  width: 20px;
+  width: 40px;
   margin-right: 1em;
 }
 
@@ -992,3 +992,48 @@ html, body {
   height: 1.5em;
   margin-right: .7em;
 }
+
+.Bridge_token_container{
+  color:#e8610d ;
+  background-color: #e9c1b0;
+  border:#e8610d solid 2px;
+  border-radius: 2em;
+  width: 90%;
+  margin: 2em auto;
+  padding: 2em;
+}
+
+.bridge_token{
+  background-color: #ece3df;
+  padding: 2em 2em;
+  border-radius: 2em;
+ 
+  margin-bottom: 2em;
+}
+.bridge{
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+}
+.bridge_img{
+  width: 100px;
+  height: 100px;
+}
+
+#dero_address{
+  border: #e8610d .05em solid;
+  border-radius: .5em;
+}
+
+.discord_social{
+  width: 3em;
+  margin: auto;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5%;
+}
+

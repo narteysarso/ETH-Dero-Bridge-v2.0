@@ -1,8 +1,10 @@
 import '../App.css';
+import discord from '../img/discord.png'
 
 export default function Footer() {
   return (
     <footer id="footer">
+     <a target = '_blank' href='https://discord.gg/vB6qQK4FTZ'> <img className='discord_social center' alt="discord image" src ={discord}></img></a>
        <div className="social-links">
         <a href="https://facebook.com/" class="fa fa-facebook  social_icon"></a>
         <a href="https://twitter.com/" class="fa fa-twitter"></a>

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import '../App.css';
 import btc_logo from "../img/bitcoin-btc-logo.png"
 import litecon_logo from "../img/litecoin-ltc-logo.png"
-import eth_logo from "../img/kisspng-ethereum-portable-network-graphics-computer-icons-developers-icon-request-icon-ethereum-5cb941c220f890.5510979515556448661351.png"
+import eth_logo from "../img/eth_logo.png"
 import cardano_logo from "../img/cardano-ada-logo.png"
 import solana_logo from "../img/solana-sol-logo.png"
 import tether_logo from "../img/tether-usdt-logo.png"
