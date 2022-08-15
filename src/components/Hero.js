@@ -158,7 +158,7 @@ export default function Hero() {
       />
       <section id="hero">
         <div className="hero_title">
-          <img className="hero_logo" src={logo}></img>
+          <img className="hero_logo" alt ="logo" src={logo}></img>
           <div className="hero_text">
             <p className="orange_neon">CryptoEscondido</p>
             <h2
@@ -194,15 +194,15 @@ export default function Hero() {
                       activate(CoinbaseWallet)
                     }}
                   >
-                    <img className="wallet_image" src={coinbase}></img>
+                    <img className="wallet_image" alt ="wallet immage coinbase" src={coinbase}></img>
                     Coinbase Wallet
                   </button>
                   <button className="wallet" onClick={connectInjected}>
-                    <img className="wallet_image" src={meta}></img>
+                    <img alt ="wallet immage metamask" className="wallet_image" src={meta}></img>
                     Metamask
                   </button>
                   <button className="wallet" onClick={connectWalletConnect}>
-                    <img className="wallet_image" src={wc}></img>
+                    <img alt ="wallet immage wallet connect" className="wallet_image" src={wc}></img>
                     Wallet Connect
                   </button>
                 </div>

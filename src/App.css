@@ -1026,3 +1026,14 @@ html, body {
   border-radius: .5em;
 }
 
+.discord_social{
+  width: 3em;
+  margin: auto;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5%;
+}
+
