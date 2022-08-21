@@ -10,23 +10,16 @@
     Function IssueTOKENX(amount Uint64, receipient String) Uint64 
 	10 IF LOAD("owner") == SIGNER() THEN GOTO 30
 	20 RETURN 1 
-	30 IF receipient == "" THEN GOTO 20
+	30 IF IS_ADDRESS_VALID(ADDRESS_RAW(receipient)) == 0 THEN GOTO 20
 	40 SEND_ASSET_TO_ADDRESS(ADDRESS_RAW(receipient), amount ,SCID())   // Increment balance of user, without knowing original balance, this is done homomorphically
 	50  RETURN 0
-	End Function
-
-    // Convert TOKENX to DERO after depositing TOKENX. Smart Contract can give DERO, Only if DERO balance exists.
-    Function ConvertTOKENX() Uint64
-	10  SEND_DERO_TO_ADDRESS(SIGNER(),ASSETVALUE(SCID()))   // Increment balance of user, without knowing original balance, this is done using Homomorphic Encryption.
-	20  RETURN 0
 	End Function
 	
     // This function is used to initialize parameters during install time
     // InitializePrivate initializes a private SC
 	Function InitializePrivate() Uint64
 	10  STORE("owner", SIGNER())   // Store in DB  ["owner"] = address
-    30  SEND_ASSET_TO_ADDRESS(SIGNER(), 1600000, SCID())   // Gives initial encrypted balance of 1600000.
-	40  RETURN 0 
+	20  RETURN 0 
 	End Function 
 
 	

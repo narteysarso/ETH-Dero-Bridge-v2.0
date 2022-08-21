@@ -6,9 +6,9 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract FakeDTTToken is ERC20, Ownable {
+contract FakeWBTC is ERC20, Ownable {
 
-    constructor() ERC20("Fake DTT","FDTT"){
+    constructor() ERC20("Wrapped BTC","WBTC"){
         //mint 160000 tokens to owner
         _mint(msg.sender, 160000 * 10 ** 18);
     }
@@ -22,6 +22,6 @@ contract FakeDTTToken is ERC20, Ownable {
     }
 
     function decimals() public view virtual override returns (uint8){
-        return 0;
+        return 8;
     }
 }
