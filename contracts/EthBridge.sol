@@ -5,9 +5,11 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "hardhat/console.sol";
 
-contract EthBridge is Ownable {
+
+contract EthBridge is Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
 
     event Deposit(address indexed _sender, uint amount, uint nonce, string deroAddress);
@@ -79,7 +81,7 @@ contract EthBridge is Ownable {
         return _amount;
     }
 
-    function releaseTokens(address _tokenAddress, uint _amount, string memory deroAddress) external onlyOwner returns (uint) {
+    function releaseTokens(address _tokenAddress, uint _amount, string memory deroAddress) external nonReentrant onlyOwner returns (uint) {
         ERC20 token = ERC20(_tokenAddress);
         if(!isValidTokenAddress(_tokenAddress)){
             revert();
